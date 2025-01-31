@@ -23,7 +23,7 @@
         <p>Il nostro ristorante è il posto giusto per gustare i migliori piatti della cucina italiana.</p>
         <p>Registrati per prenotare un tavolo e gustare i nostri piatti.</p>
     </main>
-
+    
     <footer>
         <p>&copy; 2025 Ristorante Newton Pertini</p>   
     </footer>
