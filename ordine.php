@@ -1,10 +1,10 @@
 <!-- CONTROLLER -->
 <?php
-    if(isset($_POST['numero']) !! isset($_POST['aumentaNumeroProdotti']) !! isset($_POST['diminuisciNumeroProdotti']) !! isset($_POST['rimuoviProdotto]) ){
+    if(isset($_POST['numero']) || isset($_POST['aumentaNumeroProdotti']) || isset($_POST['diminuisciNumeroProdotti']) || isset($_POST['rimuoviProdotto'])) {
+        
     } else {
         header('Location: errore.php');
-        exit;
-
+        die();
     }
 
     $con = mysqli_connect('127.0.0.1', 'root', '', 'ristorante');
