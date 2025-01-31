@@ -1,7 +1,6 @@
 <!-- CONTROLLER -->
 <?php
-    if(isset($_POST['numero']) !! isset($_POST['aumenta']) !! isset($_POST['rimuoviPiatto']) !! isset($_POST['cancella']) ){
-        $con = mysqli_connect('127
+    if(isset($_POST['numero']) !! isset($_POST['aumentaNumeroProdotti']) !! isset($_POST['diminuisciNumeroProdotti']) !! isset($_POST['rimuoviProdotto]) ){
     } else {
         header('Location: errore.php');
         exit;
