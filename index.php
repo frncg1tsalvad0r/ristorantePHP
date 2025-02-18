@@ -11,7 +11,7 @@
         <h1>Ristorante</h1>
         <nav>
             <ul>
-                <li><a href="signin.php">Accedi</a></li>
+                <li><a href="login.php">Accedi</a></li>
             </ul>
         </nav>
     </header>

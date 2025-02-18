@@ -39,14 +39,26 @@ insert into prodotti values (3, 'Pizza Margherita', 6.50, 'secondo');
 
 
 CREATE TABLE `righeOrdine` (
+  `id` int(11) NOT NULL,
   `idOrdine` int(11) NOT NULL,
   `idProdotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
   `modifiche` varchar(255) NOT NULL,
-  PRIMARY KEY (`idOrdine`, `idProdotto`),
+  PRIMARY KEY (id),
   foreign key (idOrdine) references ordini(id),
   foreign key (idProdotto) references prodotti(id)
 );
 
-insert into righeOrdine values (1, 1, 2, 'senza aglio');
-insert into righeOrdine values (1, 3, 1, '');
+insert into righeOrdine values (1, 1, 1, 2, 'senza aglio');
+insert into righeOrdine values (2, 1, 3, 1, '');
+insert into righeOrdine values (3, 1, 3, 2, 'con pancetta');
+
+CREATE TABLE `utenti` (
+  `username` varchar(255) NOT NULL,
+  `passwd` varchar(255) NOT NULL,
+  `tipo` enum('admin', 'slave')
+);
+
+insert into utenti values ('admin', 'admin', 'admin');
+insert into utenti values ('slave', 'slave', 'slave');
+

@@ -34,9 +34,9 @@
                     echo "<tr>";
                     echo "
                         <td>
-                        <form action='ricevi.php' method='POST'>
+                        <form action='modificaProdotto.php' method='POST'>
                         $prodotto[id]
-                        <button action='verbo' name='modificaProdotto'>Modifica</button>
+                        <button name='verbo' value='modificaProdotto'>Modifica</button>
                         <input type='hidden' name='idProdotto' value='$prodotto[id]'>
                         </form>
                         </td>
