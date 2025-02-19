@@ -1,4 +1,14 @@
 <?php
+    if( isset($_COOKIE) && 
+        isset($_COOKIE['username']) && 
+        isset($_COOKIE['passwd']) && 
+        isset($_COOKIE['tipo']) && 
+        $_COOKIE['tipo'] == 'admin') {
+        
+    } else {
+        echo "<h1>Non accreditato</h1>";
+        die();
+    }
 echo "<header>
         <h1>RISTORANTE</h1>
         <nav>

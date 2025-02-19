@@ -56,7 +56,8 @@ insert into righeOrdine values (3, 1, 3, 2, 'con pancetta');
 CREATE TABLE `utenti` (
   `username` varchar(255) NOT NULL,
   `passwd` varchar(255) NOT NULL,
-  `tipo` enum('admin', 'slave')
+  `tipo` enum('admin', 'slave'),
+  PRIMARY KEY (`username`)
 );
 
 insert into utenti values ('admin', 'admin', 'admin');

@@ -11,7 +11,23 @@
             $utenti = mysqli_query($con, $query);
             if(mysqli_num_rows($utenti) > 0) {
                 $utente = mysqli_fetch_assoc($utenti);
-                header("Location: visualizzaProdotti.php");
+                if($utente['tipo'] == "admin") {
+
+                // Chiamo la schermata dell'amministratore
+                    setcookie("username", $utente['username'], time() + (86400 * 30));
+                    setcookie("passwd", $utente['passwd'], time() + (86400 * 30));
+                    setcookie("tipo", $utente['tipo'], time() + (86400 * 30));
+
+                    header("Location: visualizzaProdotti.php");
+                }
+                else if($utente['tipo'] == "slave") {
+                // Chiamo la schermata dell'utente
+                    setcookie("username", $utente['username'], time() + (86400 * 30));
+                    setcookie("passwd", $utente['passwd'], time() + (86400 * 30));
+                    setcookie("tipo", $utente['tipo'], time() + (86400 * 30));
+                    
+                    header("Location: listaTavoli.php");
+                }
             }
         }
 
