@@ -10,7 +10,7 @@ if( isset($_COOKIE) &&
     die();
 }
 echo "<header>
-        <h1>RISTORANTE</h1>
+        <h1>RISTORANTE (Salve $_COOKIE[username])</h1>
         <nav>
             <ul>
                 <li><a href='index.php'>Home</a></li>
