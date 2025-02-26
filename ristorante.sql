@@ -39,7 +39,7 @@ insert into prodotti values (3, 'Pizza Margherita', 6.50, 'secondo');
 
 
 CREATE TABLE `righeOrdine` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT,
   `idOrdine` int(11) NOT NULL,
   `idProdotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
@@ -62,4 +62,5 @@ CREATE TABLE `utenti` (
 
 insert into utenti values ('admin', 'admin', 'admin');
 insert into utenti values ('slave', 'slave', 'slave');
+insert into utenti values ('mario', 'mario', 'slave');
 

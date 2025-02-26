@@ -1,5 +1,9 @@
 <!-- CONTROLLER -->
 <?php
+    // inizio la sessione
+
+    session_start();
+
     if(isset($_POST['verbo'])) {
         $verbo = $_POST['verbo'];
         if($verbo == 'login') {
@@ -12,21 +16,32 @@
             if(mysqli_num_rows($utenti) > 0) {
                 $utente = mysqli_fetch_assoc($utenti);
                 if($utente['tipo'] == "admin") {
-
+                    $_SESSION['username'] = $utente['username'];
+                    $_SESSION['passwd'] = $utente['passwd'];
+                    $_SESSION['tipo'] = $utente['tipo'];
+                /*
+                USO DEI COOLIEK
                 // Chiamo la schermata dell'amministratore
                     setcookie("username", $utente['username'], time() + (86400 * 30));
                     setcookie("passwd", $utente['passwd'], time() + (86400 * 30));
                     setcookie("tipo", $utente['tipo'], time() + (86400 * 30));
-
+                */
                     header("Location: visualizzaProdotti.php");
+                
                 }
                 else if($utente['tipo'] == "slave") {
+
+                    $_SESSION['username'] = $utente['username'];
+                    $_SESSION['passwd'] = $utente['passwd'];
+                    $_SESSION['tipo'] = $utente['tipo'];
+                /*
                 // Chiamo la schermata dell'utente
                     setcookie("username", $utente['username'], time() + (86400 * 30));
                     setcookie("passwd", $utente['passwd'], time() + (86400 * 30));
                     setcookie("tipo", $utente['tipo'], time() + (86400 * 30));
-                    
+                */    
                     header("Location: listaTavoli.php");
+                
                 }
             }
         }
