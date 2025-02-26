@@ -54,8 +54,8 @@
             $query = "SELECT * FROM prodotti";
             $prodotti = mysqli_query($con, $query);
 
-        } else if($verbo == 'aggiungiRigaOrdine') {
-
+        } else if($verbo == 'rimuoviRigaOrdine') {
+        }
     }
     else {
         header("Location: errore.php");
@@ -131,5 +131,3 @@
     ?>
 </body>
 </html>
-
-
