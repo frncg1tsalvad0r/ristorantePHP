@@ -55,6 +55,37 @@
             $prodotti = mysqli_query($con, $query);
 
         } else if($verbo == 'rimuoviRigaOrdine') {
+            // Implemento l'azione di rimozione della riga ordine
+            $con = mysqli_connect('127.0.0.1', 'root', '', 'ristorante');
+            $query = "DELETE FROM righeOrdine WHERE id=$_POST[idRigaOrdine]";
+            mysqli_query($con, $query); 
+
+            $numeroTavolo = $_SESSION["numeroTavolo"];
+            $idOrdine = $_SESSION["idOrdine"];
+
+            $query = "SELECT * FROM ordini WHERE numeroTavolo = $numeroTavolo";
+            $ordini = mysqli_query($con, $query);
+            $ordine = mysqli_fetch_assoc($ordini); // Solo una riga risultante
+
+            $query = "SELECT * FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
+                WHERE righeOrdine.idOrdine=$idOrdine";
+            $righeOrdineProdotto = mysqli_query($con, $query);
+
+            $query = "SELECT * FROM prodotti";
+            $prodotti = mysqli_query($con, $query);
+
+            //print_r($_POST); die();
+        } else if($verbo == 'inviaCucina') {
+            // Per adesso elimino ordine
+            $con = mysqli_connect('127.0.0.1', 'root', '', 'ristorante');
+            $idOrdine = $_SESSION["idOrdine"];
+            $query = "DELETE FROM righeOrdine WHERE idOrdine=$idOrdine";
+            mysqli_query($con, $query);
+            
+            $query = "DELETE FROM ordini WHERE id=$idOrdine";
+            mysqli_query($con, $query);
+            header("Location: listaTavoli.php");
+            
         }
     }
     else {
@@ -78,12 +109,12 @@
     ?>
     <main>
         <br>
-        <form>
-            NUMERO TAVOLO: <input size="10" type="number" readonly name="numeroTavolo" value="<?php echo $ordine['numeroTavolo']; ?>" ><br><br>
-            ID ORDINE: <input size="10" type="text" readonly name="idOrdine" value="<?php echo $ordine['id']; ?>" ><br><br>
+        <form action="visualizzaOrdine.php" method="POST>
+            NUMERO TAVOLO: <?php echo $ordine['numeroTavolo']; ?> -  ID ORDINE: <?php echo $ordine['id']; ?>
+            <button type="submit" name="verbo" value="inviaCucina">Invia Cucina</button><br><br>
             DATA ORA: <input type="datetime-local" name="dataOra" value="<?php echo $ordine['dataOra']; ?>" ><br><br>
             NUMERO COPERTI: <input size="10" type="number" name="numeroCoperti" value="<?php echo $ordine['numeroCoperti']; ?>" ><br><br>
-            <button type="submit" name="verbo" value="inviaCucina">Invia Cucina</button>
+            
         </form>
         <table>
             <tr><th width="50px"></th>
@@ -110,7 +141,7 @@
             <?php
             while($rigaOrdineProdotto = mysqli_fetch_assoc($righeOrdineProdotto)){
                 echo "<tr>
-                    <form>
+                    <form action='visualizzaOrdine.php' method='POST'>
                         <td>
                             <button type='submit' name='verbo' value='rimuoviRigaOrdine'>🗑️</button>
                             <input type='hidden' name='idRigaOrdine' value='$rigaOrdineProdotto[id]'>

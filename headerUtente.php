@@ -1,5 +1,5 @@
 <?php
-    session_start(); // Setta un cookie con sessid oppure apre il file con il sessid corrispondente
+    
     if(isset($_SESSION) && $_SESSION['tipo'] == 'slave') {
 
     } else {

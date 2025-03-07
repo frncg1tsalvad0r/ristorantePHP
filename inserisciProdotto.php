@@ -1,5 +1,7 @@
 <!-- CONTROLLER -->
  <?php
+    session_start();
+    
     if(isset($_POST["verbo"])){
         $verbo = $_POST["verbo"];
         if($verbo == "inserisciProdotto.php"){

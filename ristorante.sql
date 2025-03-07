@@ -19,11 +19,12 @@ CREATE TABLE `ordini` (
   `numeroTavolo` int(11) NOT NULL,
   `dataOra` timestamp NOT NULL DEFAULT NOW(),
   `numeroCoperti` int(11) NOT NULL DEFAULT 0,
+  `stato` enum ('nuovo', 'preparazione', 'consegnato', 'finito') DEFAULT ('nuovo')
   PRIMARY KEY (`id`),
   foreign key (numeroTavolo) references tavoli(numero)
 );
 
-insert into ordini values (1, 1, '2020-01-01 12:00:00', 4);
+insert into ordini values (1, 1, '2020-01-01 12:00:00', 4, 'nuovo');
 
 CREATE TABLE `prodotti` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
