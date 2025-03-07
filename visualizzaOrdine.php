@@ -21,7 +21,8 @@
             $ordini = mysqli_query($con, $query);
             $ordine = mysqli_fetch_assoc($ordini); // Solo una riga risultante
 
-            $query = "SELECT * FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
+            $query = "SELECT righeOrdine.id idRigaOrdine, quantita, modifiche, nome
+             FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
                 WHERE righeOrdine.idOrdine=$ordine[id]";
             $righeOrdineProdotto = mysqli_query($con, $query);
 
@@ -31,6 +32,7 @@
             // Mi ricordo in che tavolo sono e quale ordine sto modificando
             $_SESSION["numeroTavolo"] = $numeroTavolo;
             $_SESSION["idOrdine"] = $ordine['id'];
+            //print_r($ordine); die();
 
         } else if($verbo == 'aggiungiRigaOrdine') {
             // Implemento l'azione di inserimento della nuova riga ordine
@@ -47,7 +49,8 @@
             $ordini = mysqli_query($con, $query);
             $ordine = mysqli_fetch_assoc($ordini); // Solo una riga risultante
 
-            $query = "SELECT * FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
+            $query = "SELECT righeOrdine.id idRigaOrdine, quantita, modifiche, nome
+             FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
                 WHERE righeOrdine.idOrdine=$idOrdine";
             $righeOrdineProdotto = mysqli_query($con, $query);
 
@@ -55,6 +58,7 @@
             $prodotti = mysqli_query($con, $query);
 
         } else if($verbo == 'rimuoviRigaOrdine') {
+            
             // Implemento l'azione di rimozione della riga ordine
             $con = mysqli_connect('127.0.0.1', 'root', '', 'ristorante');
             $query = "DELETE FROM righeOrdine WHERE id=$_POST[idRigaOrdine]";
@@ -67,7 +71,8 @@
             $ordini = mysqli_query($con, $query);
             $ordine = mysqli_fetch_assoc($ordini); // Solo una riga risultante
 
-            $query = "SELECT * FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
+            $query = "SELECT righeOrdine.id idRigaOrdine, quantita, modifiche, nome 
+             FROM righeOrdine INNER JOIN prodotti ON righeOrdine.idProdotto = prodotti.id
                 WHERE righeOrdine.idOrdine=$idOrdine";
             $righeOrdineProdotto = mysqli_query($con, $query);
 
@@ -109,7 +114,7 @@
     ?>
     <main>
         <br>
-        <form action="visualizzaOrdine.php" method="POST>
+        <form action="servito.php" method="POST">
             NUMERO TAVOLO: <?php echo $ordine['numeroTavolo']; ?> -  ID ORDINE: <?php echo $ordine['id']; ?>
             <button type="submit" name="verbo" value="inviaCucina">Invia Cucina</button><br><br>
             DATA ORA: <input type="datetime-local" name="dataOra" value="<?php echo $ordine['dataOra']; ?>" ><br><br>
@@ -144,7 +149,7 @@
                     <form action='visualizzaOrdine.php' method='POST'>
                         <td>
                             <button type='submit' name='verbo' value='rimuoviRigaOrdine'>🗑️</button>
-                            <input type='hidden' name='idRigaOrdine' value='$rigaOrdineProdotto[id]'>
+                            <input type='hidden' name='idRigaOrdine' value='$rigaOrdineProdotto[idRigaOrdine]'>
                         </td>
                         <td>$rigaOrdineProdotto[quantita]</td>
                         <td>$rigaOrdineProdotto[nome]</td>
