@@ -1,6 +1,13 @@
 DROP DATABASE IF EXISTS ristorante;
 CREATE DATABASE ristorante;
 
+/**
+PER SQL INJECTION PROVARE LA STRINGA DI USERNAME 
+-- mario' OR 1 = 1 -- \
+
+ e PASSWORD QUALSIASI NELLA FASE DI LOGIN
+ */
+
 USE ristorante;
 
 CREATE TABLE `tavoli` (
@@ -19,7 +26,7 @@ CREATE TABLE `ordini` (
   `numeroTavolo` int(11) NOT NULL,
   `dataOra` timestamp NOT NULL DEFAULT NOW(),
   `numeroCoperti` int(11) NOT NULL DEFAULT 0,
-  `stato` enum ('nuovo', 'preparazione', 'consegnato', 'finito') DEFAULT ('nuovo')
+  `stato` enum ('nuovo', 'preparazione', 'servito', 'terminato') NOT NULL DEFAULT ('nuovo'),
   PRIMARY KEY (`id`),
   foreign key (numeroTavolo) references tavoli(numero)
 );

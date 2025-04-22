@@ -19,8 +19,7 @@
     
     <main>
         <h2>Benvenuto nel nostro ristorante</h2>
-        <p>Il nostro ristorante è il posto giusto per gustare i migliori piatti della cucina italiana.</p>
-        <p>Registrati per prenotare un tavolo e gustare i nostri piatti.</p>
+        <img src="img/ristorante.jpg" alt="ristorante">    
     </main>
     
     <footer>

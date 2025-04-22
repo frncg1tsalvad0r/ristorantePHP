@@ -12,6 +12,7 @@
             $passwd = $_POST['passwd'];
             $con = mysqli_connect("127.0.0.1", "root", "", "ristorante");
             $query = "SELECT * FROM utenti WHERE username = '$username'  AND passwd='$passwd'";
+            //print_r($query); die();
             $utenti = mysqli_query($con, $query);
             if(mysqli_num_rows($utenti) > 0) {
                 $utente = mysqli_fetch_assoc($utenti);
